@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VA Night Sorting Algorithm</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background: #f4f4f9;
+    }
+    h1 {
+      text-align: center;
+    }
+    .group-inputs {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .group-inputs label {
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+    }
+    button {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    #output {
+      max-width: 600px;
+      margin: 20px auto;
+      background: white;
+      padding: 10px;
+      border-radius: 8px;
+      height: 300px;
+      overflow-y: scroll;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+
+<h1>VA Night Sorting Algorithm</h1>
+
+<div class="group-inputs">
+  <label>Long<input type="number" id="Long" min="0" value="0"></label>
+  <label>Medium<input type="number" id="Medium" min="0" value="0"></label>
+  <label>Short<input type="number" id="Short" min="0" value="0"></label>
+  <label>Pre<input type="number" id="Pre" min="0" value="0"></label>
+  <label>Post<input type="number" id="Post" min="0" value="0"></label>
+</div>
+
+<button onclick="runSimulation()">Run Simulation</button>
+
+<div id="output"></div>
+
+<script>
+  function runSimulation() {
+    const groups = {
+      Long: parseInt(document.getElementById('Long').value, 10),
+      Medium: parseInt(document.getElementById('Medium').value, 10),
+      Short: parseInt(document.getElementById('Short').value, 10),
+      Pre: parseInt(document.getElementById('Pre').value, 10),
+      Post: parseInt(document.getElementById('Post').value, 10)
+    };
+
+    const output = document.getElementById('output');
+    output.textContent = '';
+
+    function log(message) {
+      output.textContent += message + '\n';
+    }
+
+    let list_Order = 0;
+
+    // CYCLE 1 – strict order: Long → Medium → Post → Pre → Short until all >= 6
+    const cycle1Order = ["Long", "Medium", "Post", "Pre", "Short"];
+    while (Object.values(groups).some(size => size < 6)) {
+      for (let group of cycle1Order) {
+        if (groups[group] < 6) {
+          groups[group]++;
+          list_Order++;
+          log(`${list_Order}. Assign this patient to ${group}.`);
+        }
+      }
+    }
+
+    // CYCLE 2 – Long to 10, Medium to 8
+    while (groups["Long"] < 10 || groups["Medium"] < 8) {
+      if (groups["Long"] < 10) {
+        groups["Long"]++;
+        list_Order++;
+        log(`${list_Order}. Assign this patient to Long.`);
+      }
+      if (groups["Medium"] < 8) {
+        groups["Medium"]++;
+        list_Order++;
+        log(`${list_Order}. Assign this patient to Medium.`);
+      }
+    }
+
+    // CYCLE 3 – Post, Pre, Short to 8
+    while (groups["Post"] < 8 || groups["Pre"] < 8 || groups["Short"] < 8) {
+      if (groups["Post"] < 8) {
+        groups["Post"]++;
+        list_Order++;
+        log(`${list_Order}. Assign this patient to Post.`);
+      }
+      if (groups["Pre"] < 8) {
+        groups["Pre"]++;
+        list_Order++;
+        log(`${list_Order}. Assign this patient to Pre.`);
+      }
+      if (groups["Short"] < 8) {
+        groups["Short"]++;
+        list_Order++;
+        log(`${list_Order}. Assign this patient to Short.`);
+      }
+    }
+
+    // CYCLE 4 – Long to 12, Medium to 10
+    while (groups["Long"] < 12 || groups["Medium"] < 10) {
+      if (groups["Long"] < 12) {
+        groups["Long"]++;
+        list_Order++;
+        log(`${list_Order}. Assign this patient to Long.`);
+      }
+      if (groups["Medium"] < 10) {
+        groups["Medium"]++;
+        list_Order++;
+        log(`${list_Order}. Assign this patient to Medium.`);
+      }
+    }
+
+    // CYCLE 5 – Post, Pre, Short to 10
+    while (groups["Post"] < 10 || groups["Pre"] < 10 || groups["Short"] < 10) {
+      if (groups["Post"] < 10) {
+        groups["Post"]++;
+        list_Order++;
+        log(`${list_Order}. Assign this patient to Post.`);
+      }
+      if (groups["Pre"] < 10) {
+        groups["Pre"]++;
+        list_Order++;
+        log(`${list_Order}. Assign this patient to Pre.`);
+      }
+      if (groups["Short"] < 10) {
+        groups["Short"]++;
+        list_Order++;
+        log(`${list_Order}. Assign this patient to Short.`);
+      }
+    }
+
+    // CYCLE 6 – Long to 14, Medium to 12
+    while (groups["Long"] < 14 || groups["Medium"] < 12) {
+      if (groups["Long"] < 14) {
+        groups["Long"]++;
+        list_Order++;
+        log(`${list_Order}. Assign this patient to Long.`);
+      }
+      if (groups["Medium"] < 12) {
+        groups["Medium"]++;
+        list_Order++;
+        log(`${list_Order}. Assign this patient to Medium.`);
+      }
+    }
+
+    // CYCLE 7 – Medium and Pre to 14
+    while (groups["Medium"] < 14 || groups["Pre"] < 14) {
+      if (groups["Medium"] < 14) {
+        groups["Medium"]++;
+        list_Order++;
+        log(`${list_Order}. Assign this patient to Medium.`);
+      }
+      if (groups["Pre"] < 14) {
+        groups["Pre"]++;
+        list_Order++;
+        log(`${list_Order}. Assign this patient to Pre.`);
+      }
+    }
+
+    // Final Summary
+    log("\nFinal group sizes:");
+    for (let group in groups) {
+      log(`${group}: ${groups[group]}`);
+    }
+    log("\nDistribution complete!");
+  }
+</script>
+
+</body>
+</html>
