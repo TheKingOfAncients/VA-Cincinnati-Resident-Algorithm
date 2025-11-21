@@ -116,6 +116,7 @@
       }
     }
 
+/*
     // CYCLE 2 – Long to 10, Medium to 8
     while (groups["Long"] < 10 || groups["Medium"] < 8) {
       if (groups["Long"] < 10) {
@@ -129,7 +130,22 @@
         log(`${list_Order}. Assign this patient to Medium.`);
       }
     }
-
+*/
+	// CYCLE 2 - Long to 10, Medium to 8
+	while (group["Long"] < 10) {
+		if groups["Long"] < 10) {
+			groups["Long"]++;
+			list_Order++
+			log(`${list_Order}. Assign this patient to Long.`);
+			}
+	while (group["Medium"] < 8) {
+		if (groups["Medium"] < 8) {
+			groups["Medium"]++;
+			list_Order++;
+			log(`${list_Order}. Assign this patient to Medium.`);
+		}
+	
+	
     // CYCLE 3 – Post, Pre, Short to 8
     while (groups["Post"] < 8 || groups["Pre"] < 8 || groups["Short"] < 8) {
       if (groups["Post"] < 8) {
@@ -148,7 +164,7 @@
         log(`${list_Order}. Assign this patient to Short.`);
       }
     }
-
+/*
     // CYCLE 4 – Long to 12, Medium to 10
     while (groups["Long"] < 12 || groups["Medium"] < 10) {
       if (groups["Long"] < 12) {
@@ -162,6 +178,21 @@
         log(`${list_Order}. Assign this patient to Medium.`);
       }
     }
+*/
+
+	// CYCLE 4 - Long to 12, Medium to 10
+	while (group["Long"] < 12) {
+		if groups["Long"] < 12) {
+			groups["Long"]++;
+			list_Order++
+			log(`${list_Order}. Assign this patient to Long.`);
+			}
+	while (group["Medium"] < 10) {
+		if (groups["Medium"] < 10) {
+			groups["Medium"]++;
+			list_Order++;
+			log(`${list_Order}. Assign this patient to Medium.`);
+		}
 
     // CYCLE 5 – Post, Pre, Short to 10
     while (groups["Post"] < 10 || groups["Pre"] < 10 || groups["Short"] < 10) {
@@ -181,7 +212,7 @@
         log(`${list_Order}. Assign this patient to Short.`);
       }
     }
-
+/*
     // CYCLE 6 – Long to 14, Medium to 12
     while (groups["Long"] < 14 || groups["Medium"] < 12) {
       if (groups["Long"] < 14) {
@@ -195,6 +226,21 @@
         log(`${list_Order}. Assign this patient to Medium.`);
       }
     }
+*/
+
+	// CYCLE 6 - Long to 14, Medium to 12
+	while (group["Long"] < 14) {
+		if groups["Long"] < 14) {
+			groups["Long"]++;
+			list_Order++
+			log(`${list_Order}. Assign this patient to Long.`);
+			}
+	while (group["Medium"] < 12) {
+		if (groups["Medium"] < 12) {
+			groups["Medium"]++;
+			list_Order++;
+			log(`${list_Order}. Assign this patient to Medium.`);
+		}
 
     // CYCLE 7 – Medium and Pre to 14
     while (groups["Medium"] < 14 || groups["Pre"] < 14) {
