@@ -107,7 +107,7 @@
     function logAllGroupsInline() {
       let line = "      → # of Pts: ";
       for (let g in groups) line += `${g} @ ${groups[g]}  `;
-      log(line + '\n');
+      log('\n' + line + '\n');
     }
 
     let list_Order = 0;
