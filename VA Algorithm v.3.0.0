@@ -12,6 +12,7 @@
    See the License for the specific language governing permissions and
    limitations under the License. -->
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,9 +103,16 @@
       output.textContent += message + '\n';
     }
 
+    // NEW: Inline group display
+    function logAllGroupsInline() {
+      let line = "      → Sizes: ";
+      for (let g in groups) line += `${g}=${groups[g]}  `;
+      log(line + '\n');
+    }
+
     let list_Order = 0;
 
-    // CYCLE 1 – strict order: Long → Medium → Post → Pre → Short until all >= 6
+    // CYCLE 1 – strict order to 6
     const cycle1Order = ["Long", "Medium", "Post", "Pre", "Short"];
     while (Object.values(groups).some(size => size < 6)) {
       for (let group of cycle1Order) {
@@ -112,24 +120,23 @@
           groups[group]++;
           list_Order++;
           log(`${list_Order}. Assign this patient to ${group}.`);
+          logAllGroupsInline();
         }
       }
     }
 
     // CYCLE 2 – Long to 10, Medium to 8
     while (groups["Long"] < 10) {
-      if (groups["Long"] < 10) {
-        groups["Long"]++;
-        list_Order++;
-        log(`${list_Order}. Assign this patient to Long.`);
-      }
-	}
-	while (groups["Medium"] < 8) { 
-      if (groups["Medium"] < 8) {
-        groups["Medium"]++;
-        list_Order++;
-        log(`${list_Order}. Assign this patient to Medium.`);
-      }
+      groups["Long"]++;
+      list_Order++;
+      log(`${list_Order}. Assign this patient to Long.`);
+      logAllGroupsInline();
+    }
+    while (groups["Medium"] < 8) {
+      groups["Medium"]++;
+      list_Order++;
+      log(`${list_Order}. Assign this patient to Medium.`);
+      logAllGroupsInline();
     }
 
     // CYCLE 3 – Post, Pre, Short to 8
@@ -138,33 +145,34 @@
         groups["Post"]++;
         list_Order++;
         log(`${list_Order}. Assign this patient to Post.`);
+        logAllGroupsInline();
       }
       if (groups["Pre"] < 8) {
         groups["Pre"]++;
         list_Order++;
         log(`${list_Order}. Assign this patient to Pre.`);
+        logAllGroupsInline();
       }
       if (groups["Short"] < 8) {
         groups["Short"]++;
         list_Order++;
         log(`${list_Order}. Assign this patient to Short.`);
+        logAllGroupsInline();
       }
     }
 
     // CYCLE 4 – Long to 12, Medium to 10
     while (groups["Long"] < 12) {
-      if (groups["Long"] < 12) {
-        groups["Long"]++;
-        list_Order++;
-        log(`${list_Order}. Assign this patient to Long.`);
-      }
-	}
-	while (groups["Medium"] < 10) { 
-      if (groups["Medium"] < 10) {
-        groups["Medium"]++;
-        list_Order++;
-        log(`${list_Order}. Assign this patient to Medium.`);
-      }
+      groups["Long"]++;
+      list_Order++;
+      log(`${list_Order}. Assign this patient to Long.`);
+      logAllGroupsInline();
+    }
+    while (groups["Medium"] < 10) {
+      groups["Medium"]++;
+      list_Order++;
+      log(`${list_Order}. Assign this patient to Medium.`);
+      logAllGroupsInline();
     }
 
     // CYCLE 5 – Post, Pre, Short to 10
@@ -173,33 +181,34 @@
         groups["Post"]++;
         list_Order++;
         log(`${list_Order}. Assign this patient to Post.`);
+        logAllGroupsInline();
       }
       if (groups["Pre"] < 10) {
         groups["Pre"]++;
         list_Order++;
         log(`${list_Order}. Assign this patient to Pre.`);
+        logAllGroupsInline();
       }
       if (groups["Short"] < 10) {
         groups["Short"]++;
         list_Order++;
         log(`${list_Order}. Assign this patient to Short.`);
+        logAllGroupsInline();
       }
     }
 
     // CYCLE 6 – Long to 14, Medium to 12
     while (groups["Long"] < 14) {
-      if (groups["Long"] < 14) {
-        groups["Long"]++;
-        list_Order++;
-        log(`${list_Order}. Assign this patient to Long.`);
-      }
-	}
-	while (groups["Medium"] < 12) { 
-      if (groups["Medium"] < 12) {
-        groups["Medium"]++;
-        list_Order++;
-        log(`${list_Order}. Assign this patient to Medium.`);
-      }
+      groups["Long"]++;
+      list_Order++;
+      log(`${list_Order}. Assign this patient to Long.`);
+      logAllGroupsInline();
+    }
+    while (groups["Medium"] < 12) {
+      groups["Medium"]++;
+      list_Order++;
+      log(`${list_Order}. Assign this patient to Medium.`);
+      logAllGroupsInline();
     }
 
     // CYCLE 7 – Medium and Pre to 14
@@ -208,11 +217,13 @@
         groups["Medium"]++;
         list_Order++;
         log(`${list_Order}. Assign this patient to Medium.`);
+        logAllGroupsInline();
       }
       if (groups["Pre"] < 14) {
         groups["Pre"]++;
         list_Order++;
         log(`${list_Order}. Assign this patient to Pre.`);
+        logAllGroupsInline();
       }
     }
 
