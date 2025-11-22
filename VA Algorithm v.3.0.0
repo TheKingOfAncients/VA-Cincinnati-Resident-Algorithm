@@ -105,7 +105,7 @@
 
     // NEW: Inline group display
     function logAllGroupsInline() {
-      let line = "      → Sizes: ";
+      let line = "      → # of Pts: ";
       for (let g in groups) line += `${g}=${groups[g]}  `;
       log(line + '\n');
     }
